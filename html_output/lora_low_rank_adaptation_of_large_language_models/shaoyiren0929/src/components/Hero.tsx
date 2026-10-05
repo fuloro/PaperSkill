@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Meta, HeroConfig } from '../types';
 import { widgetRegistry } from '../modules/registry';
+import { resolveImageSrc } from '../lib/assetPath';
 
 // Hero (slide 0): paper metadata + old/new two-column contrast. Each side may
 // show a canvas widget (componentId) and/or a paper figure.
@@ -37,7 +38,7 @@ export function Hero({
             <div className="bg-side-canvas">
               {OldWidget ? <OldWidget chapterId="hero" moduleId="old" /> : null}
               {hero.oldMethod.figure ? (
-                <img src={hero.oldMethod.figure} alt="传统方法" className="bg-side-img" />
+                <img src={resolveImageSrc(hero.oldMethod.figure)} alt="传统方法" className="bg-side-img" />
               ) : null}
             </div>
             <div className="bg-side-tag" dangerouslySetInnerHTML={{ __html: hero.oldMethod.desc }} />
@@ -47,7 +48,7 @@ export function Hero({
             <div className="bg-side-canvas">
               {NewWidget ? <NewWidget chapterId="hero" moduleId="new" /> : null}
               {hero.newMethod.figure ? (
-                <img src={hero.newMethod.figure} alt="本文方法" className="bg-side-img" />
+                <img src={resolveImageSrc(hero.newMethod.figure)} alt="本文方法" className="bg-side-img" />
               ) : null}
             </div>
             <div className="bg-side-tag" dangerouslySetInnerHTML={{ __html: hero.newMethod.desc }} />

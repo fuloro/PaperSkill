@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import type { BiliDef } from '../types';
 import { useBiliVideos, BiliCard } from '../lib/useBiliVideos';
+import { resolveImageSrc } from '../lib/assetPath';
 
 // Optional Bilibili recommendations. Renders whenever >=1 real BVID is passed.
 // Cards are ALWAYS shown from the static `it` data (title + optional baked-in cover),
@@ -44,7 +45,7 @@ export function BiliVideos({ items }: { items: BiliDef[] }) {
                 {showCover ? (
                   <img
                     className="dl-video-cover-img"
-                    src={cover}
+                    src={resolveImageSrc(cover)}
                     alt={it.title}
                     // Bilibili's cover CDN blocks requests that carry a foreign
                     // Referer (hotlink protection -> 403). Sending no Referer lets
